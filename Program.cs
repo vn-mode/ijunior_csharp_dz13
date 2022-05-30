@@ -14,11 +14,11 @@ namespace vn_mode_csharp_dz13
             string defaultName = "Guest";
             string userChangeConsoleColor;
             string defaultPassword = "12345678";
-            string userInput;
+            string userInput = "";
 
-            while (true)
+            while (userInput != esc)
             {
-                Console.WriteLine("Приветствую тебя пользователь.\nСПИСОК ДОСТУПНЫХ КОМАНД ДЛЯ ВВОДА:\n");
+                Console.WriteLine("\nПриветствую тебя пользователь.\nСПИСОК ДОСТУПНЫХ КОМАНД ДЛЯ ВВОДА:\n");
                 Console.WriteLine($"{userInputName} - устанавливает имя");
                 Console.WriteLine($"{colorConsole} - изменяет цвет консоли");
                 Console.WriteLine($"{userPassword} - устанавливает пароль");
@@ -27,81 +27,73 @@ namespace vn_mode_csharp_dz13
                 Console.Write("ВВЕДИТЕ КОМАНДУ: ");
                 userInput = Console.ReadLine();
 
-                if (userInput != esc)
+                switch (userInput)
                 {
-                    switch (userInput)
-                    {
-                        case "SetName":
-                            Console.Write("Введите ваше имя: ");
-                            defaultName = Console.ReadLine();
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Done! Имя успешно добавлено.");
-                            Console.ForegroundColor = ConsoleColor.White;
-                            break;
-                        case "ChangeConsoleColor":
-                            Console.WriteLine("Выберете желаемый цвет из доступных:\n");
-                            Console.WriteLine("Red - изменяет цвет консоли в красный цвет");
-                            Console.WriteLine("Black - изменяет цвет консоли в чёрный цвет");
-                            Console.WriteLine("Reset - настройки цвета по умолчанию");
-                            userChangeConsoleColor = Console.ReadLine();
-                            switch (userChangeConsoleColor)
-                            {
-                                case "Red":
-                                    Console.BackgroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Done! Цвет консоли успешно изменён.");
-                                    break;
-                                case "Black":
-                                    Console.BackgroundColor = ConsoleColor.Black;
-                                    Console.WriteLine("Done! Цвет консоли успешно изменён.");
-                                    break;
-                                case "Reset":
-                                    Console.ResetColor();
-                                    Console.WriteLine("Done! Цвет консоли успешно сброшен.");
-                                    break;
-                                default:
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Вы ввели не существующую команду.");
-                                    Console.ForegroundColor = ConsoleColor.White;
-                                    break;
-                            }
-                            break;
-                        case "SetPassword":
-                            Console.WriteLine("Придумайте пароль: ");
-                            defaultPassword = Console.ReadLine();
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Done! Пароль успешно добавлено.");
-                            Console.ForegroundColor = ConsoleColor.White;
-                            break;
-                        case "WriteName":
-                            Console.WriteLine("Для вывода имени на экран введите пароль:");
-                            userInput = Console.ReadLine();
-                            if (userInput == defaultPassword)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"Done! Ваше имя: {defaultName}.");
-                                Console.ForegroundColor = ConsoleColor.White;
+                    case "SetName":
+                        Console.Write("Введите ваше имя: ");
+                        defaultName = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Done! Имя успешно добавлено.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                    case "ChangeConsoleColor":
+                        Console.WriteLine("Выберете желаемый цвет из доступных:\n");
+                        Console.WriteLine("Red - изменяет цвет консоли в красный цвет");
+                        Console.WriteLine("Black - изменяет цвет консоли в чёрный цвет");
+                        Console.WriteLine("Reset - настройки цвета по умолчанию");
+                        userChangeConsoleColor = Console.ReadLine();
 
-                            }
-                            else
-                            {
+                        switch (userChangeConsoleColor)
+                        {
+                            case "Red":
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.WriteLine("\nDone! Цвет консоли успешно изменён.");
+                                break;
+                            case "Black":
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Console.WriteLine("\nDone! Цвет консоли успешно изменён.");
+                                break;
+                            case "Reset":
+                                Console.ResetColor();
+                                Console.WriteLine("\nDone! Цвет консоли успешно сброшен.");
+                                break;
+                            default:
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Вы ввели неверный пароль или пароль не установлен.\nПопробуйте воспользоваться командой SetPassword");
+                                Console.WriteLine("\nВы ввели не существующую команду.");
                                 Console.ForegroundColor = ConsoleColor.White;
-                            }
-                            break;
-                        case "Esc":
-                            break;
-                        default:
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Вы ввели не существующую команду.");
+                                break;
+                        }
+                        break;
+                    case "SetPassword":
+                        Console.WriteLine("Придумайте пароль: ");
+                        defaultPassword = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Done! Пароль успешно добавлено.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                    case "WriteName":
+                        Console.WriteLine("Для вывода имени на экран введите пароль:");
+                        userInput = Console.ReadLine();
+                        if (userInput == defaultPassword)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"Done! Ваше имя: {defaultName}.");
                             Console.ForegroundColor = ConsoleColor.White;
-                            break;
-
-                    }
-                }
-                else if (userInput == esc)
-                {
-                    break;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Вы ввели неверный пароль или пароль не установлен.\nПопробуйте воспользоваться командой SetPassword");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        break;
+                    case "Esc":
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Вы ввели не существующую команду.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
                 }
 
             }
